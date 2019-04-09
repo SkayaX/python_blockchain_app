@@ -212,10 +212,13 @@ def register_with_existing_node():
     request, and sync the blockchain as well as peer data.
     """
     node_address = request.get_json()["node_address"]
+    thisisme=request.host_url
+    longitud=len(thisisme)
+    thisisme=thisisme[:longitud-1]
     if not node_address:
         return "Invalid data", 400
 
-    data = {"node_address": request.host_url}
+    data = {"node_address": thisisme}
     headers = {'Content-Type': "application/json"}
 
     # Make a request to register with remote node and obtain information
@@ -290,7 +293,7 @@ def consensus():
 
     for node in peers:
         print('{}/chain'.format(node))
-        response = requests.get('{}chain'.format(node))
+        response = requests.get('{}/chain'.format(node))
         print("Content", response.content)
         length = response.json()['length']
         chain = response.json()['chain']

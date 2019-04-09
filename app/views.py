@@ -9,7 +9,6 @@ from app import app
 # The node with which our application interacts, there can be multiple
 # such nodes as well.
 CONNECTED_NODE_ADDRESS = "http://127.0.0.1:8000"
-
 posts = []
 
 
